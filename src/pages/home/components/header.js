@@ -38,25 +38,15 @@ function Header() {
         <img className={classes.img} src="/images/logo.bmp" alt="Logo"/>
         <div className={classes.grow} ></div>
         <div className={classes.userSection} >
-          <button position="contained" color="primary" className={classes.buttonRight} >
+          <Button position="contained" color="primary" className={classes.buttonRight} >
             Novo Post
-          </button>
+          </Button>
           <SvgIcon className={classes.bell} >
             <Bell></Bell>
           </SvgIcon>
           <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
         </div>
-        {/* <div>
-          <a href="/">FaceDev</a>
-          <input type="text"/>
-        </div>
-        <div>
-          <Button color="primary" variant="contained" >
-              Novo Post
-            </Button>
-          <span>imag1</span>
-          <span>imag2</span>
-        </div> */}
+
       </Toolbar>
     </AppBar>
   )

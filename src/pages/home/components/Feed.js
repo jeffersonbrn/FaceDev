@@ -12,15 +12,14 @@ const posts = [
 ];
 
 function Feed() {
-  const classes = makeStyles();
-  return 
-    <div>
-        {
-            posts.map((post => 
-                <PostCard key={post.id} />
-            ))
-        }
-    </div>;
+  const classes = useStyles();
+  return(
+  <div>
+    {posts.map((post) => (
+      <PostCard key={post.id} post={post} />
+    ))}
+  </div>
+  )
 }
 
 export default Feed;
