@@ -38,7 +38,7 @@ function Header() {
         <img className={classes.img} src="/images/logo.bmp" alt="Logo"/>
         <div className={classes.grow} ></div>
         <div className={classes.userSection} >
-          <Button position="contained" color="primary" className={classes.buttonRight} >
+          <Button variant="contained" color="primary" className={classes.buttonRight} >
             Novo Post
           </Button>
           <SvgIcon className={classes.bell} >

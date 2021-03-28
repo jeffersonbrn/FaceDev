@@ -30,7 +30,7 @@ function NavBar() {
     const classes = useStyles();
     return(
         <Paper className={classes.root} >
-            <Button variant="outlined" color="Primary" className={classes.button} >Registrar Grátis</Button>
+            <Button variant="outlined" color="secondary" className={classes.button} >Registrar Grátis</Button>
             <ListSubheader component="div" id="nested-list-subheader">Tags em Alta</ListSubheader>
             {
                 tags.map((item) => (
