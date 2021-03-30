@@ -7,6 +7,8 @@ import Avatar from "@material-ui/core/Avatar";
 import LockOutlinedIcon from "@material-ui/icons/LockOpenOutlined";
 import TextField from "@material-ui/core/TextField";
 import { Button, Link } from "@material-ui/core";
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -57,6 +59,12 @@ function Copyright() {
 
 function SignIn() {
   const classes = useStyles();
+  const navigate = useNavigate();
+  function handleSignIn(){
+    // Chamada a Api nossa aplicação
+    // Se retorno ok, direciona para a home
+    // senão direciona para usuario
+  }
 
   return (
     <Grid container className={classes.root}>
@@ -116,7 +124,7 @@ function SignIn() {
               id="password"
               autoComplete="current-password"
             />
-            <Button fullWidth variant="contained" color="secondary" className={classes.button} >
+            <Button fullWidth variant="contained" color="secondary" className={classes.button} onClick={handleSignIn} >
               Entrar
             </Button>
             <Grid container className={classes.link}>
