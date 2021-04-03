@@ -1,4 +1,4 @@
-import React from "react";
+import React,  { useState } from "react";
 import { makeStyles, rgbToHex } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
@@ -8,7 +8,8 @@ import LockOutlinedIcon from "@material-ui/icons/LockOpenOutlined";
 import TextField from "@material-ui/core/TextField";
 import { Button, Link } from "@material-ui/core";
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios'
+import authService from '../../services/authService';
+import FormHelperText from "@material-ui/core/FormHelperText";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -60,10 +61,21 @@ function Copyright() {
 function SignIn() {
   const classes = useStyles();
   const navigate = useNavigate();
-  function handleSignIn(){
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState();
+
+  async function handleSignIn(){
     // Chamada a Api nossa aplicação
     // Se retorno ok, direciona para a home
     // senão direciona para usuario
+    try {
+      await authService.signIN(email, password);
+      navigate('/');
+
+    } catch(error) {
+      setErrorMessage(error.response.data.message)
+    }
   }
 
   return (
@@ -112,6 +124,8 @@ function SignIn() {
               name="email"
               autoComplete="Email"
               autoFocus
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
             />
             <TextField
               variant="outlined"
@@ -123,10 +137,18 @@ function SignIn() {
               type="password"
               id="password"
               autoComplete="current-password"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
             />
             <Button fullWidth variant="contained" color="secondary" className={classes.button} onClick={handleSignIn} >
               Entrar
             </Button>
+            {
+              errorMessage && 
+              <FormHelperText error >
+                {errorMessage}
+              </FormHelperText>
+            }
             <Grid container className={classes.link}>
               <Grid item>
                 <Link className={classes.linktext}>Esqueceu sua senha?</Link>
