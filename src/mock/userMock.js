@@ -1,13 +1,6 @@
-import mock from '../utils/mock'
-
-{/*mock.onPost('/api/home/login').reply(200,{
-   'id': 1, 
-    'username': 'Bruno Reis',
-    'email': 'jeffersonbrn@live.com'
- })*/}
+import mock from '../utils/mock';
 
 mock.onPost('/api/home/login').reply((config) =>{
-    console.log(config)
     const { email, password } = JSON.parse(config.data)
 
     if(email !== 'jeffersonbrn@live.com' || password !== 'admin') {
