@@ -3,7 +3,7 @@ import axios from '../utils/axios';
 
 class AuthService {
 
-      signIN = (email, password) => {
+      signIn = (email, password) => {
        return new Promise((resolve, reject) => {
             axios.post('/api/home/login', {
                     email,
@@ -11,7 +11,6 @@ class AuthService {
                 })
                 .then(response => {
                     if (response.data.user) {
-                        this.setUser(response.data.user)
                         resolve(response.data.user)
                     } else {
                         reject(response.data.error)

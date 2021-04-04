@@ -8,8 +8,10 @@ import LockOutlinedIcon from "@material-ui/icons/LockOpenOutlined";
 import TextField from "@material-ui/core/TextField";
 import { Button, Link } from "@material-ui/core";
 import { useNavigate } from 'react-router-dom';
-import authService from '../../services/authService';
+
 import FormHelperText from "@material-ui/core/FormHelperText";
+import { useSelector, useDispatch } from 'react-redux';
+import signIn from '../../actions/accountActions';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -64,20 +66,22 @@ function SignIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState();
+  const account = useSelector(state => state);
+  const dispatch = useDispatch();
+  
 
-  async function handleSignIn(){
+  async function handleSignIn() {
     // Chamada a Api nossa aplicação
     // Se retorno ok, direciona para a home
     // senão direciona para usuario
     try {
-      await authService.signIN(email, password);
+      await dispatch(signIn(email, password));
       navigate('/');
-
-    } catch(error) {
-      setErrorMessage(error.response.data.message)
+    } catch (error) {
+      setErrorMessage(error.response.data.message);
     }
   }
-
+  
   return (
     <Grid container className={classes.root}>
       <Grid
